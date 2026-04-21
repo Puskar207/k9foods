@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>K9 — Crafted by pet parents, dil se.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== Design Tokens ===================== */
+:root{
+  --cream:#FAF4E8;
+  --cream-2:#F3E9D3;
+  --ink:#0F1F33;
+  --ink-2:#1E3A5F;
+  --coral:#EF6C47;
+  --coral-dark:#D04E2A;
+  --sage:#A8BD94;
+  --sage-dark:#7B9B66;
+  --butter:#F6C861;
+  --rose:#F5D5C5;
+  --white:#FFFFFF;
+  --grey-1:#F4F1EA;
+  --grey-2:#E8E2D3;
+  --muted:#6B6B6B;
+  --success:#4F9D69;
+  --shadow-sm:0 2px 6px rgba(15,31,51,.06);
+  --shadow-md:0 10px 30px rgba(15,31,51,.10);
+  --shadow-lg:0 24px 60px rgba(15,31,51,.18);
+  --radius-sm:10px;
+  --radius:18px;
+  --radius-lg:28px;
+  --radius-pill:999px;
+  --maxw:1240px;
+  --gutter:24px;
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.1}
+h1{font-size:clamp(2.4rem,5vw,4.4rem)}
+h2{font-size:clamp(1.9rem,3.6vw,3rem)}
+h3{font-size:clamp(1.2rem,1.6vw,1.5rem)}
+p{margin:0}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:.78rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--coral-dark);
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--coral)}
+.section{padding:96px 0}
+.section-sm{padding:56px 0}
+.lead{font-size:1.1rem;color:#394657;max-width:640px}
+.italic{font-style:italic}
+.serif-accent{font-family:var(--font-display);font-style:italic;font-weight:500}
+
+/* ===================== Buttons ===================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;border-radius:var(--radius-pill);font-weight:600;font-size:.95rem;
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease,color .2s ease;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--coral);color:#fff;box-shadow:0 6px 18px rgba(239,108,71,.35)}
+.btn-primary:hover{background:var(--coral-dark);box-shadow:0 10px 24px rgba(208,78,42,.42)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#0a1524}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn-cream{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
+.btn-sm{padding:10px 18px;font-size:.85rem}
+
+/* ===================== Announcement Bar ===================== */
+.announce{background:var(--ink);color:var(--cream);font-size:.82rem;font-weight:500;padding:10px 0;text-align:center;overflow:hidden}
+.announce .track{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+.announce .dot{width:4px;height:4px;border-radius:50%;background:var(--coral)}
+
+/* ===================== Navigation ===================== */
+.nav{
+  position:sticky;top:0;z-index:60;background:rgba(250,244,232,.92);
+  backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px);
+  border-bottom:1px solid rgba(15,31,51,.06);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.7rem;letter-spacing:-.02em}
+.logo .badge{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
+  background:var(--ink);color:var(--butter);font-family:var(--font-display);font-weight:800;font-size:1.05rem;
+  box-shadow:inset 0 0 0 2px var(--butter);
+}
+.logo small{display:block;font-size:.62rem;font-family:var(--font-body);font-weight:500;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:.95rem;font-weight:500;color:var(--ink);position:relative}
+.nav-links a:hover{color:var(--coral-dark)}
+.nav-links a.has-dot::after{content:"";position:absolute;top:4px;right:-10px;width:6px;height:6px;background:var(--coral);border-radius:50%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow-sm);position:relative;transition:transform .15s ease}
+.icon-btn:hover{transform:scale(1.06)}
+.icon-btn svg{width:18px;height:18px;stroke:var(--ink)}
+.cart-count{
+  position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 6px;
+  border-radius:999px;background:var(--coral);color:#fff;font-size:.72rem;font-weight:700;
+  display:grid;place-items:center;box-shadow:0 2px 6px rgba(239,108,71,.4);
+}
+.hamburger{display:none}
+
+/* ===================== Hero ===================== */
+.hero{position:relative;padding:40px 0 80px;overflow:hidden}
+.hero-bg{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(80% 60% at 85% 20%,var(--rose) 0%,transparent 60%),
+    radial-gradient(60% 50% at 15% 80%,#EAE0C8 0%,transparent 60%),
+    var(--cream);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero-copy h1{font-weight:700;line-height:1.02}
+.hero-copy h1 .script{font-style:italic;font-weight:500;color:var(--coral-dark);display:inline-block;transform:translateY(2px)}
+.hero-copy h1 .heart{display:inline-block;transform:translateY(-4px);color:var(--coral)}
+.hero-sub{margin-top:22px;font-size:1.1rem;color:#41506a;max-width:520px}
+.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.hero-bullets{display:flex;flex-wrap:wrap;gap:18px 28px;margin-top:34px;color:#34435a;font-size:.9rem}
+.hero-bullets span{display:inline-flex;align-items:center;gap:8px;font-weight:500}
+.hero-bullets svg{width:18px;height:18px;stroke:var(--sage-dark)}
+.hero-media{position:relative}
+.hero-card{
+  position:relative;aspect-ratio:5/6;border-radius:var(--radius-lg);overflow:hidden;
+  background:linear-gradient(160deg,#BFD1A8 0%,#8FAC6F 100%);
+  box-shadow:var(--shadow-lg);
+}
+.hero-dog{
+  position:absolute;inset:0;
+  background-image:url("https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=900&q=80");
+  background-size:cover;background-position:center;
+  mix-blend-mode:multiply;opacity:.96;
+}
+.hero-overlay{position:absolute;inset:auto 0 0 0;padding:26px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.55),transparent)}
+.hero-floating{
+  position:absolute;background:#fff;border-radius:var(--radius);padding:14px 18px;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px;
+}
+.hero-floating.price{top:24px;right:-10px}
+.hero-floating.stars{bottom:30px;left:-10px}
+.hero-floating .ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--cream-2);color:var(--coral-dark);font-weight:700;font-family:var(--font-display)}
+.hero-floating .meta{font-size:.78rem;color:var(--muted)}
+.hero-floating .bold{font-weight:700;color:var(--ink);font-size:.92rem}
+.stars{display:inline-flex;gap:2px;color:var(--butter)}
+.stars svg{width:14px;height:14px;fill:var(--butter)}
+
+/* ===================== Trust Bar ===================== */
+.trust{padding:22px 0;background:var(--ink);color:#EFE3C7}
+.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.trust-row .stat{display:flex;flex-direction:column;gap:2px}
+.trust-row .num{font-family:var(--font-display);font-weight:700;font-size:1.55rem;color:#fff}
+.trust-row .label{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#C9BE9F}
+.trust-row .sep{display:none}
+
+/* ===================== How it Works ===================== */
+.how{background:#fff}
+.how-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.how-head p{color:#425268;font-size:1.05rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+.step{
+  background:var(--cream);border-radius:var(--radius);padding:28px;
+  position:relative;transition:transform .2s ease,box-shadow .2s ease;
+}
+.step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.step .num{
+  width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--butter);
+  font-family:var(--font-display);font-weight:700;display:grid;place-items:center;font-size:1.1rem;margin-bottom:16px;
+}
+.step h3{margin-bottom:8px;font-weight:600}
+.step p{color:var(--muted);font-size:.95rem}
+.step:nth-child(2){background:var(--rose)}
+.step:nth-child(3){background:var(--cream-2)}
+
+/* ===================== Products ===================== */
+.products{background:var(--cream)}
+.section-head{text-align:center;max-width:720px;margin:0 auto 48px}
+.section-head .eyebrow{margin-bottom:14px}
+.section-head p{margin-top:14px;color:#425268;font-size:1.05rem}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.product-card{
+  background:#fff;border-radius:var(--radius-lg);padding:22px;
+  display:flex;flex-direction:column;gap:14px;position:relative;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.product-tag{
+  position:absolute;top:18px;left:18px;z-index:2;
+  background:var(--ink);color:var(--butter);font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;
+}
+.product-tag.new{background:var(--coral)}
+.product-tag.best{background:var(--sage-dark);color:#fff}
+.product-media{
+  aspect-ratio:4/3;border-radius:var(--radius);display:grid;place-items:center;position:relative;
+  background:linear-gradient(140deg,#F0E4CC,#E4D2AD);overflow:hidden;
+}
+.product-media.sage{background:linear-gradient(140deg,#D9E3CA,#A8BD94)}
+.product-media.rose{background:linear-gradient(140deg,#F6D9C9,#F0B59A)}
+.product-media.sky{background:linear-gradient(140deg,#CFE0EC,#9FBBD4)}
+.product-media.lilac{background:linear-gradient(140deg,#E4D7EC,#B9A3CE)}
+.product-media.butter{background:linear-gradient(140deg,#FAE6B0,#F3C95E)}
+.pouch{
+  width:58%;aspect-ratio:3/4;border-radius:14px 14px 10px 10px;
+  background:linear-gradient(170deg,#EF6C47 0%,#C54A2A 100%);
+  position:relative;box-shadow:0 18px 30px rgba(76,30,0,.25);
+  display:flex;flex-direction:column;padding:14px;color:#fff;
+}
+.pouch::before{content:"";position:absolute;top:-8px;left:10%;right:10%;height:12px;background:#2a0f06;border-radius:6px 6px 2px 2px;opacity:.8}
+.pouch.sage{background:linear-gradient(170deg,#7B9B66 0%,#4E6B3D 100%)}
+.pouch.teal{background:linear-gradient(170deg,#2B8A8A 0%,#124B4B 100%)}
+.pouch.brown{background:linear-gradient(170deg,#8B5A36 0%,#4F2F17 100%)}
+.pouch.navy{background:linear-gradient(170deg,#2B4764 0%,#0F1F33 100%)}
+.pouch.plum{background:linear-gradient(170deg,#784267 0%,#3B1F33 100%)}
+.pouch .brand{font-family:var(--font-display);font-weight:800;font-size:1.05rem;letter-spacing:.08em;border:1.5px solid #fff;border-radius:6px;padding:2px 6px;align-self:flex-start}
+.pouch .cat{font-family:var(--font-display);font-weight:800;font-size:1.5rem;line-height:1;margin-top:14px;text-transform:uppercase}
+.pouch .sub{font-size:.65rem;font-weight:600;letter-spacing:.12em;margin-top:4px;opacity:.9;text-transform:uppercase}
+.pouch .divider{height:2px;background:rgba(255,255,255,.3);margin:12px 0 8px}
+.pouch .ingredients{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.pouch .weight{margin-top:auto;font-family:var(--font-display);font-weight:700;font-size:.95rem}
+.product-body{display:flex;flex-direction:column;gap:6px}
+.product-body .meta-line{display:flex;justify-content:space-between;align-items:baseline}
+.product-title{font-family:var(--font-display);font-weight:600;font-size:1.2rem}
+.product-price{font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+.product-price .was{color:var(--muted);text-decoration:line-through;font-size:.85rem;font-weight:500;margin-right:6px}
+.product-desc{color:var(--muted);font-size:.9rem;min-height:40px}
+.product-variants{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.variant{
+  padding:6px 10px;border-radius:999px;background:var(--cream);font-size:.76rem;font-weight:600;
+  cursor:pointer;transition:background .15s ease,color .15s ease;border:1.5px solid transparent;
+}
+.variant.active{background:var(--ink);color:#fff}
+.variant:hover:not(.active){background:var(--cream-2)}
+.product-actions{display:flex;gap:8px;margin-top:10px}
+.product-actions .btn{flex:1}
+.rating-row{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted)}
+
+/* ===================== Subscription Band ===================== */
+.subscribe{
+  padding:80px 0;background:
+    radial-gradient(60% 80% at 10% 20%,rgba(239,108,71,.15),transparent 60%),
+    radial-gradient(40% 60% at 90% 80%,rgba(168,189,148,.2),transparent 60%),
+    var(--ink);
+  color:#fff;
+}
+.subscribe-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.subscribe .eyebrow{color:var(--butter)}
+.subscribe .eyebrow::before{background:var(--butter)}
+.subscribe h2{color:#fff}
+.subscribe .lead{color:#C8D3E2;margin-top:14px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plan{
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);padding:26px;position:relative;backdrop-filter:blur(6px);
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.plan:hover{transform:translateY(-4px);border-color:rgba(246,200,97,.5)}
+.plan.featured{background:var(--butter);color:var(--ink);border-color:var(--butter)}
+.plan.featured .meta{color:#4A3A10}
+.plan .ribbon{
+  position:absolute;top:-12px;right:18px;background:var(--coral);color:#fff;
+  padding:5px 12px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+}
+.plan h3{font-family:var(--font-display);font-size:1.35rem;margin-bottom:4px}
+.plan .price{font-family:var(--font-display);font-weight:700;font-size:2.2rem;line-height:1;margin:10px 0}
+.plan .price small{font-size:.85rem;font-weight:500;color:inherit;opacity:.75}
+.plan .meta{font-size:.88rem;opacity:.85}
+.plan ul{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:8px;font-size:.9rem}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"";flex-shrink:0;width:18px;height:18px;margin-top:1px;border-radius:50%;background:var(--sage-dark) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/14px no-repeat}
+.plan.featured li::before{background-color:var(--ink-2)}
+.plan .btn{width:100%;margin-top:6px}
+
+/* ===================== Why K9 ===================== */
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-card{
+  background:var(--cream);border-radius:var(--radius);padding:30px;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+  border:1.5px solid transparent;
+}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);background:#fff;border-color:var(--grey-2)}
+.why-card .ico{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow-sm);margin-bottom:18px;
+}
+.why-card .ico svg{width:26px;height:26px;stroke:var(--coral-dark)}
+.why-card h3{font-size:1.2rem;margin-bottom:8px}
+.why-card p{color:var(--muted);font-size:.95rem}
+.why-card:nth-child(2){background:var(--rose)}
+.why-card:nth-child(4){background:var(--cream-2)}
+.why-card:nth-child(5){background:#E8EFDE}
+.why-card:nth-child(3) .ico svg,
+.why-card:nth-child(5) .ico svg{stroke:var(--sage-dark)}
+
+/* ===================== Pet Quiz CTA ===================== */
+.quiz-cta{background:var(--cream);padding:80px 0}
+.quiz-box{
+  background:linear-gradient(135deg,#FDF2D9,#F6C861 70%,#EF6C47);
+  border-radius:var(--radius-lg);padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;
+}
+.quiz-box h2{color:var(--ink);max-width:500px}
+.quiz-box p{margin-top:14px;color:#2a2416;max-width:440px;font-size:1.02rem}
+.quiz-box .btn{margin-top:26px}
+.quiz-illust{
+  position:relative;aspect-ratio:1/1;border-radius:var(--radius-lg);overflow:hidden;
+  background-image:url("https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80");
+  background-size:cover;background-position:center;box-shadow:var(--shadow-lg);
+}
+.quiz-illust::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 50%,rgba(0,0,0,.4));}
+
+/* ===================== Testimonials ===================== */
+.testimonials{background:var(--cream-2);position:relative;overflow:hidden}
+.testimonials::before,.testimonials::after{
+  content:"";position:absolute;width:220px;height:220px;border-radius:50%;opacity:.4;
+}
+.testimonials::before{background:var(--rose);top:-80px;left:-60px}
+.testimonials::after{background:#D9E3CA;bottom:-80px;right:-60px}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:2}
+.t-card{background:#fff;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-sm)}
+.t-card .stars{margin-bottom:0}
+.t-card blockquote{margin:0;font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--ink);line-height:1.35}
+.t-author{display:flex;align-items:center;gap:12px;margin-top:auto}
+.t-avatar{width:46px;height:46px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0}
+.t-meta .n{font-weight:600;font-size:.95rem}
+.t-meta .p{font-size:.8rem;color:var(--muted)}
+
+/* ===================== Story ===================== */
+.story{background:var(--ink-2);color:#EFE3C7;padding:96px 0}
+.story-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.story-photo{
+  aspect-ratio:5/6;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);
+  background-image:url("https://images.unsplash.com/photo-1546975554-197bcb39a47d?w=900&q=80");
+  background-size:cover;background-position:center;
+}
+.story h2{color:#fff;font-weight:700}
+.story .eyebrow{color:var(--butter)}
+.story .eyebrow::before{background:var(--butter)}
+.story p{margin-top:16px;color:#C8D3E2;font-size:1.02rem;max-width:520px}
+.story .sig{font-family:var(--font-display);font-style:italic;font-size:1.15rem;color:var(--butter);margin-top:18px}
+
+/* ===================== FAQ ===================== */
+.faq{background:#fff}
+.faq-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--cream);border-radius:var(--radius);overflow:hidden;transition:background .2s ease}
+.faq-item summary{
+  list-style:none;padding:22px 24px;cursor:pointer;font-family:var(--font-display);font-weight:600;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item .mark{width:28px;height:28px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:transform .2s ease,background .2s ease;flex-shrink:0}
+.faq-item .mark svg{width:14px;height:14px;stroke:var(--ink)}
+.faq-item[open] .mark{transform:rotate(45deg);background:var(--coral);}
+.faq-item[open] .mark svg{stroke:#fff}
+.faq-item[open]{background:var(--cream-2)}
+.faq-item .body{padding:0 24px 22px;color:var(--muted);font-size:.95rem;line-height:1.6}
+
+/* ===================== Newsletter ===================== */
+.newsletter{background:var(--cream)}
+.nl-box{
+  background:#fff;border-radius:var(--radius-lg);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;box-shadow:var(--shadow-sm);
+}
+.nl-box h2{font-weight:700}
+.nl-box p{color:var(--muted);margin-top:12px}
+.nl-form{display:flex;gap:10px;margin-top:22px}
+.nl-form input{
+  flex:1;padding:14px 18px;border-radius:var(--radius-pill);border:1.5px solid var(--grey-2);
+  font-family:inherit;font-size:.95rem;background:var(--cream);
+}
+.nl-form input:focus{outline:none;border-color:var(--coral)}
+.nl-illust{
+  aspect-ratio:4/3;border-radius:var(--radius);
+  background:
+    radial-gradient(circle at 30% 30%,#F6C861,transparent 40%),
+    radial-gradient(circle at 70% 70%,var(--coral),transparent 40%),
+    var(--cream-2);
+  position:relative;display:grid;place-items:center;
+}
+.nl-illust .chip{background:#fff;border-radius:999px;padding:8px 14px;font-weight:600;font-size:.85rem;box-shadow:var(--shadow-sm);position:absolute}
+.nl-illust .c1{top:18%;left:15%}
+.nl-illust .c2{top:40%;right:12%}
+.nl-illust .c3{bottom:18%;left:22%}
+.nl-illust .bone{
+  font-family:var(--font-display);font-weight:800;font-size:3.4rem;color:var(--ink);
+}
+
+/* ===================== Footer ===================== */
+footer{background:var(--ink);color:#C8D3E2;padding:70px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:40px;margin-bottom:44px}
+.footer-grid h4{font-family:var(--font-body);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:#fff;margin-bottom:18px}
+.footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:.92rem}
+.footer-grid a:hover{color:var(--butter)}
+.footer-intro p{color:#8EA0B9;font-size:.95rem;margin-top:14px;max-width:280px}
+.socials{display:flex;gap:10px;margin-top:22px}
+.socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s ease}
+.socials a:hover{background:var(--coral)}
+.socials svg{width:16px;height:16px;stroke:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid rgba(255,255,255,.08);font-size:.85rem;color:#8EA0B9;flex-wrap:wrap;gap:12px}
+
+/* ===================== Cart Drawer ===================== */
+.scrim{
+  position:fixed;inset:0;background:rgba(15,31,51,.5);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:80;
+}
+.scrim.open{opacity:1;pointer-events:all}
+.cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);background:#fff;z-index:90;
+  transform:translateX(100%);transition:transform .3s cubic-bezier(.4,.14,.3,1);
+  display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--grey-1)}
+.cart-head h3{font-size:1.3rem}
+.cart-body{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:14px}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.cart-empty .ico{width:60px;height:60px;border-radius:50%;background:var(--cream);display:grid;place-items:center;margin:0 auto 18px}
+.cart-empty .ico svg{width:28px;height:28px;stroke:var(--muted)}
+.cart-item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:14px;background:var(--cream);border-radius:var(--radius-sm);align-items:center}
+.cart-item .thumb{width:72px;height:72px;border-radius:10px;background:var(--cream-2);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;color:var(--ink);font-size:1.3rem}
+.cart-item .info h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:2px}
+.cart-item .info .variant-label{font-size:.78rem;color:var(--muted)}
+.cart-item .info .subline{font-size:.78rem;color:var(--coral-dark);font-weight:600;margin-top:2px}
+.qty{display:inline-flex;align-items:center;border-radius:999px;background:#fff;padding:3px;border:1px solid var(--grey-2)}
+.qty button{width:24px;height:24px;border-radius:50%;font-size:.9rem}
+.qty button:hover{background:var(--cream-2)}
+.qty span{min-width:22px;text-align:center;font-weight:600;font-size:.9rem}
+.cart-item .price{font-family:var(--font-display);font-weight:700;font-size:.95rem;align-self:flex-start}
+.cart-item .remove{font-size:.72rem;color:var(--muted);margin-top:6px}
+.cart-item .remove:hover{color:var(--coral-dark);text-decoration:underline}
+.cart-foot{padding:20px 24px;border-top:1px solid var(--grey-1);background:var(--cream)}
+.cart-foot .row{display:flex;justify-content:space-between;padding:4px 0;font-size:.92rem;color:var(--muted)}
+.cart-foot .total{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink);padding-top:10px;margin-top:6px;border-top:1px solid var(--grey-2)}
+.cart-foot .btn{width:100%;margin-top:14px}
+.cart-foot .note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:10px}
+
+/* ===================== Quiz Modal ===================== */
+.modal-scrim{
+  position:fixed;inset:0;background:rgba(15,31,51,.6);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:100;
+  display:grid;place-items:center;padding:20px;
+}
+.modal-scrim.open{opacity:1;pointer-events:all}
+.modal{
+  width:min(640px,100%);background:#fff;border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-lg);max-height:90vh;display:flex;flex-direction:column;
+  transform:translateY(20px);transition:transform .3s ease;
+}
+.modal-scrim.open .modal{transform:translateY(0)}
+.modal-head{padding:20px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--grey-1)}
+.modal-head .progress{display:flex;gap:6px}
+.modal-head .progress span{width:22px;height:4px;border-radius:999px;background:var(--grey-2)}
+.modal-head .progress span.done{background:var(--coral)}
+.modal-head h3{font-size:1.1rem}
+.modal-body{padding:30px 26px;overflow-y:auto;flex:1}
+.modal-body h2{font-size:1.7rem;margin-bottom:8px}
+.modal-body p{color:var(--muted);margin-bottom:20px}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{
+  border:1.5px solid var(--grey-2);background:var(--cream);border-radius:var(--radius);
+  padding:18px;text-align:left;display:flex;align-items:center;gap:12px;transition:all .15s ease;
+  font-size:.95rem;font-weight:500;
+}
+.quiz-opt:hover{border-color:var(--coral);background:#fff}
+.quiz-opt.active{border-color:var(--coral);background:#fff;box-shadow:inset 0 0 0 1.5px var(--coral)}
+.quiz-opt .emoji{font-size:1.5rem}
+.quiz-input{
+  width:100%;padding:14px 18px;border-radius:var(--radius);border:1.5px solid var(--grey-2);
+  font-family:inherit;font-size:1rem;background:var(--cream);
+}
+.quiz-input:focus{outline:none;border-color:var(--coral)}
+.modal-foot{padding:16px 26px;border-top:1px solid var(--grey-1);display:flex;justify-content:space-between;gap:12px;background:var(--cream)}
+.quiz-result{text-align:center;padding:20px 10px}
+.quiz-result .check{width:60px;height:60px;border-radius:50%;background:var(--sage);display:grid;place-items:center;margin:0 auto 18px}
+.quiz-result .check svg{width:30px;height:30px;stroke:#fff}
+.quiz-result h2{margin-bottom:10px}
+.recipe-card{background:var(--cream);border-radius:var(--radius);padding:20px;margin-top:20px;display:flex;gap:16px;align-items:center;text-align:left}
+.recipe-card .thumb{width:64px;height:64px;border-radius:10px;background:linear-gradient(140deg,#EF6C47,#C54A2A);display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-weight:800;font-size:1.3rem;flex-shrink:0}
+.recipe-card .info h4{font-family:var(--font-display);font-weight:600;font-size:1rem}
+.recipe-card .info p{color:var(--muted);font-size:.85rem;margin-top:2px;margin-bottom:0}
+
+/* ===================== Toast ===================== */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:#fff;padding:14px 22px;border-radius:999px;font-size:.9rem;font-weight:500;
+  box-shadow:var(--shadow-md);z-index:120;opacity:0;transition:transform .3s ease,opacity .3s ease;
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast svg{width:18px;height:18px;stroke:var(--sage)}
+
+/* ===================== Responsive ===================== */
+@media (max-width:980px){
+  .hero-grid,.how-head,.subscribe-grid,.quiz-box,.story-grid,.faq-grid,.nl-box{grid-template-columns:1fr;gap:40px}
+  .product-grid,.t-grid,.why-grid,.steps,.plans{grid-template-columns:repeat(2,1fr)}
+  .trust-row{grid-template-columns:repeat(2,1fr);gap:20px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .section{padding:72px 0}
+  .quiz-box{padding:36px}
+  .nl-box{padding:32px}
+}
+@media (max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:grid}
+  .product-grid,.t-grid,.why-grid,.steps,.plans,.quiz-options{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-floating.price{top:12px;right:8px}
+  .hero-floating.stars{bottom:14px;left:8px}
+  .hero{padding:20px 0 60px}
+  .section{padding:56px 0}
+  .quiz-box,.nl-box{padding:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announce">
+  <div class="container">
+    <div class="track">
+      <span>✨ Free shipping across India on orders over ₹899</span>
+      <span class="dot"></span>
+      <span>🐾 Subscribe & save 15% + skip anytime</span>
+      <span class="dot"></span>
+      <span>📦 Crafted by pet parents, <i>dil se</i></span>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="badge">K9</span>
+      <span>
+        K9
+        <small>Crafted dil se</small>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#subscribe" class="has-dot">Subscribe & Save</a>
+      <a href="#quiz">Pet Quiz</a>
+      <a href="#story">Our Story</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="openCart" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="#subscribe" class="btn btn-primary btn-sm">Start a Plan</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Made in India · Vet-approved</span>
+      <h1>Real food for<br><span class="script">real tail-waggers</span> <span class="heart">♥</span></h1>
+      <p class="hero-sub">Thoughtfully crafted kibble for dogs and cats — balanced nutrition, premium Indian ingredients, and a subscription that shows up right when the bowl runs low.</p>
+      <div class="hero-ctas">
+        <a href="#subscribe" class="btn btn-primary">Build my plan →</a>
+        <a href="#shop" class="btn btn-ghost">Shop one-time</a>
+      </div>
+      <div class="hero-bullets">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No fillers, no BS</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Lab-tested batches</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Helps strays eat too</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-card">
+        <div class="hero-dog"></div>
+        <div class="hero-overlay">
+          <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">Meet Pickle</div>
+          <div style="font-size:.85rem;opacity:.85">Beagle · 3 yrs · Chicken & Veg recipe</div>
+        </div>
+      </div>
+      <div class="hero-floating price">
+        <span class="ico">%</span>
+        <div>
+          <div class="bold">Save 15%</div>
+          <div class="meta">on every subscription</div>
+        </div>
+      </div>
+      <div class="hero-floating stars">
+        <div>
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          </div>
+          <div class="bold">4.9 / 5</div>
+          <div class="meta">from 2,400+ pet parents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<section class="trust">
+  <div class="container trust-row">
+    <div class="stat"><span class="num">12,000+</span><span class="label">Happy bowls</span></div>
+    <div class="stat"><span class="num">32%</span><span class="label">Real protein</span></div>
+    <div class="stat"><span class="num">₹2.4L</span><span class="label">Donated to shelters</span></div>
+    <div class="stat"><span class="num">48 hr</span><span class="label">Avg. delivery</span></div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section how">
+  <div class="container">
+    <div class="how-head">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 style="margin-top:14px">From our kitchen to their bowl, in three easy steps.</h2>
+      </div>
+      <p>Tell us about your pet, we build a plan you can pause, skip, or swap any time. No subscriptions disguised as a trap — just food that shows up when you need it.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Take the 60-second quiz</h3>
+        <p>Age, breed, activity, pickiness — we build a recipe that fits your pet, not the other way around.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Pick your cadence</h3>
+        <p>Choose weekly, bi-weekly or monthly deliveries. Pause, skip, or cancel — no emails required.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Unbox the tail wags</h3>
+        <p>Double-sealed freshness, lab-certified quality, and a little note in every box. Reorder in a click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="shop" class="section products">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our recipes</span>
+      <h2>Real ingredients. Unreal tail wags.</h2>
+      <p>Every batch is slow-cooked in India with chicken, fish, rice, and vegetables — no soy, no corn, no mystery meat.</p>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- Subscription Band -->
+<section id="subscribe" class="subscribe">
+  <div class="container subscribe-grid">
+    <div>
+      <span class="eyebrow">Subscribe & save</span>
+      <h2 style="margin-top:14px">Never run out. Never overpay.</h2>
+      <p class="lead">Our Subscribe & Save plans lock in 15% off every order, free shipping, and flexible delivery. Your pet eats on schedule — you get your evenings back.</p>
+      <ul style="list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:12px;color:#C8D3E2">
+        <li style="display:flex;gap:12px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--butter)"></span>Free delivery on every order, pan-India</li>
+        <li style="display:flex;gap:12px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--butter)"></span>Pause, skip, swap recipes — anytime</li>
+        <li style="display:flex;gap:12px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--butter)"></span>2% of every plan funds stray feeding</li>
+      </ul>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Starter</h3>
+        <div class="price">₹849<small>/box</small></div>
+        <div class="meta">500g · every 4 weeks</div>
+        <ul>
+          <li>One recipe, small pets</li>
+          <li>Free shipping</li>
+          <li>Pause / cancel anytime</li>
+        </ul>
+        <button class="btn btn-cream">Choose Starter</button>
+      </div>
+      <div class="plan featured">
+        <span class="ribbon">Most loved</span>
+        <h3>Family Pack</h3>
+        <div class="price">₹2,199<small>/box</small></div>
+        <div class="meta">3kg · every 4 weeks · save 15%</div>
+        <ul>
+          <li>Free breed-specific treats</li>
+          <li>Priority 24–48hr shipping</li>
+          <li>Flexible cadence</li>
+          <li>Vet chat credits included</li>
+        </ul>
+        <button class="btn btn-dark">Choose Family Pack</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why K9 -->
+<section class="section why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why K9</span>
+      <h2>Built for the bowl. Obsessed with the details.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 9 9l-7 1 5 5-1 7 6-3 6 3-1-7 5-5-7-1Z"/></svg></div>
+        <h3>Premium ingredients</h3>
+        <p>Real chicken, ocean fish, rice, pumpkin — sourced locally and traceable to the farm.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div>
+        <h3>Balanced nutrition</h3>
+        <p>Vet-formulated protein, fat, and fibre ratios tuned for every life stage and breed size.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21v-2a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Tail-wagging taste</h3>
+        <p>Slow-cooked in small batches. Even the pickiest picky eaters clean their bowl.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Lab-certified quality</h3>
+        <p>Every batch is tested for protein, fat, moisture, and safety before it leaves our kitchen.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.3 5.7A9 9 0 1 0 21 12"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Freshness sealed</h3>
+        <p>Double-sealed nitrogen-flush pouches keep kibble as good as the day we baked it.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="15" r="2"/><circle cx="4" cy="8" r="2"/><path d="M14 15a3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 1.8-2 2-2 4a3 3 0 0 0 3 3 8 8 0 0 0 4-1 8 8 0 0 0 4 1 3 3 0 0 0 3-3c0-2-2-2.2-2-4Z"/></svg></div>
+        <h3>Pawsitive impact</h3>
+        <p>A portion of every purchase supports strays, shelters, and rescue ambulances across India.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pet Quiz CTA -->
+<section id="quiz" class="quiz-cta">
+  <div class="container">
+    <div class="quiz-box">
+      <div>
+        <span class="eyebrow">60-second quiz</span>
+        <h2 style="margin-top:14px">Let us meet your pet.</h2>
+        <p>Answer a few quick questions and we'll hand-pick the right recipe, portion size, and delivery cadence — tailored to your best friend.</p>
+        <button class="btn btn-dark" id="openQuiz">Start the pet quiz →</button>
+      </div>
+      <div class="quiz-illust" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Loved by pet parents</span>
+      <h2>Tails are wagging. So are the reviews.</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+        </div>
+        <blockquote>"Max's coat is shinier, his poop is firmer (sorry!), and he runs to the bowl now. K9 is the only kibble he hasn't turned his nose up at."</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=80')"></div>
+          <div class="t-meta">
+            <div class="n">Aditi S.</div>
+            <div class="p">Mumbai · Golden Retriever parent</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+        </div>
+        <blockquote>"Rover used to be the pickiest eater in our neighbourhood. Since we switched to the K9 Chicken & Veg recipe, he dives in like it's his last meal."</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=160&q=80')"></div>
+          <div class="t-meta">
+            <div class="n">Neha R.</div>
+            <div class="p">Bengaluru · Indie parent</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.3 5.5 21 7 14 2 9.3 9 9"/></svg>
+        </div>
+        <blockquote>"Bruno and Bella have more energy on walks and their digestion has never been better. The subscription means I don't have to panic-buy at 10pm."</blockquote>
+        <div class="t-author">
+          <div class="t-avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80')"></div>
+          <div class="t-meta">
+            <div class="n">Priya K.</div>
+            <div class="p">Delhi · Husky parent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Story -->
+<section id="story" class="story">
+  <div class="container story-grid">
+    <div class="story-photo" aria-hidden="true"></div>
+    <div>
+      <span class="eyebrow">Our story</span>
+      <h2 style="margin-top:14px">It all started with a wag and a wish.</h2>
+      <p>We were frustrated pet parents. Store-bought kibble was full of fillers, imported brands were overpriced, and no one seemed to care about the 35 million strays who eat whatever they find.</p>
+      <p>So we built K9 from scratch — sourcing chicken, fish, and produce from Indian farms, slow-cooking in small batches, and reinvesting 2% of every bag into stray feeding, shelter vets, and rescue ambulances.</p>
+      <div class="sig">— Crafted by pet parents, dil se.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section faq">
+  <div class="container faq-grid">
+    <div>
+      <span class="eyebrow">Good to know</span>
+      <h2 style="margin-top:14px">Frequently<br>asked questions.</h2>
+      <p style="margin-top:18px;color:var(--muted)">Everything you need to know before your first bowl. Can't find what you're looking for? Our <a href="#" style="color:var(--coral-dark);font-weight:600">pet care team</a> is one message away.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>How does the subscription work?<span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">Take our pet quiz, pick a cadence (weekly, bi-weekly, or every 4 weeks), and your food arrives on schedule. You save 15% on every order and get free shipping. You can pause, skip, swap recipes, or cancel any time from your dashboard — no emails, no scripts, no guilt trips.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Is K9 suitable for puppies and kittens?<span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">Our adult formulas are designed for pets 12 months and older. Our puppy and kitten recipes (coming soon) pack extra protein, DHA, and calcium for growing tail-waggers. Take the quiz and we'll recommend the right fit.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Where do you ship, and how long does it take?<span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">We ship to every PIN code in India. Metro orders usually arrive in 24–48 hours; other cities within 3–5 business days. Subscribers get priority fulfillment at no extra cost.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What if my pet doesn't like it?<span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">We offer a 100% happiness guarantee on your first order. If they don't dive in, we'll swap the recipe or refund you — no questions asked, no pouches to return. We've got a 96% "clean bowl" rate, but picky pets keep us honest.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How does the "Pawsitive Impact" program work?<span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">2% of every order is pooled monthly and distributed across NGO-run shelters, stray-feeding drives, rescue ambulances, and low-cost animal hospitals. We publish the impact numbers on the 1st of every month.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section newsletter">
+  <div class="container">
+    <div class="nl-box">
+      <div>
+        <span class="eyebrow">The good boy club</span>
+        <h2 style="margin-top:14px">Join our pack.</h2>
+        <p>Monthly care tips, recipe drops, and the occasional puppy-pic roll. No spam, unsubscribe any time.</p>
+        <form class="nl-form" onsubmit="event.preventDefault();showToast('Welcome to the pack! 🐾')">
+          <input type="email" placeholder="you@pawsome.in" required>
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+      </div>
+      <div class="nl-illust">
+        <span class="chip c1">🐕 Care tips</span>
+        <span class="chip c2">🍗 Recipes</span>
+        <span class="chip c3">🎁 Early drops</span>
+        <div class="bone">🦴</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-intro">
+        <a href="#" class="logo" style="color:#fff">
+          <span class="badge">K9</span>
+          <span>K9<small style="color:#8EA0B9">Crafted dil se</small></span>
+        </a>
+        <p>Real food for real pets, made in India. We craft every bowl with the belief that good nutrition shouldn't be a luxury — for your pet or for the strays we support.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12s0-4-.5-5.5-1-2-2.5-2.5C17 3.5 12 3.5 12 3.5s-5 0-7 .5c-1.5.5-2 1-2.5 2.5S2 12 2 12s0 4 .5 5.5 1 2 2.5 2.5c2 .5 7 .5 7 .5s5 0 7-.5c1.5-.5 2-1 2.5-2.5S22 12 22 12Z"/><path d="m10 15 5-3-5-3z" fill="#fff"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-1.2 4.4L21 21l-5.2-1.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10c.5 2 2 3.5 4 4 .7-.2 1.3-.6 1.8-1.2l1.7.7.5-2-2-.5c-.6.6-1.2 1-1.9 1.2-1-.4-1.6-1-2-2Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Dog food</a></li>
+          <li><a href="#">Cat food</a></li>
+          <li><a href="#">Treats & toppers</a></li>
+          <li><a href="#">Subscribe & save</a></li>
+          <li><a href="#">Gift cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#">Our ingredients</a></li>
+          <li><a href="#">Feeding guide</a></li>
+          <li><a href="#">Pet care blog</a></li>
+          <li><a href="#">Transition guide</a></li>
+          <li><a href="#">Vet chat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">Pawsitive Impact</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 K9 Foods Pvt. Ltd. · Made in India with 🐾</div>
+      <div>Privacy · Terms · Shipping · Refunds</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-head">
+    <h3>Your bowl</h3>
+    <button class="icon-btn" id="closeCart" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+    <div class="row"><span>Shipping</span><span id="shipLine">Calculated at checkout</span></div>
+    <div class="row"><span>Subscription savings</span><span id="savings" style="color:var(--success);font-weight:600">−₹0</span></div>
+    <div class="row total"><span>Total</span><span id="total">₹0</span></div>
+    <button class="btn btn-primary">Checkout →</button>
+    <div class="note">✦ 2% of this order supports stray feeding</div>
+  </div>
+</aside>
+
+<!-- Quiz Modal -->
+<div class="modal-scrim" id="quizScrim">
+  <div class="modal" role="dialog" aria-label="Pet quiz">
+    <div class="modal-head">
+      <h3 id="quizTitle">Tell us about your pet</h3>
+      <div class="progress" id="quizProgress">
+        <span class="done"></span><span></span><span></span><span></span>
+      </div>
+      <button class="icon-btn" id="closeQuiz" aria-label="Close quiz">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="quizBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" id="quizBack">← Back</button>
+      <button class="btn btn-primary btn-sm" id="quizNext">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastMsg">Added to bowl</span>
+</div>
+
+<script>
+/* ===== Data ===== */
+const PRODUCTS=[
+  {id:"p1",name:"All-Breed Adult Dog Food",desc:"Chicken & veg kibbles · 24% protein · Muscle, coat, digestion.",badge:"Best seller",badgeCls:"best",mediaCls:"sage",pouchCls:"",pouchCat:"Adult Dog",pouchSub:"Chicken & Veg",price:{"500g":649,"1.5kg":1499,"3kg":2499},was:{"500g":769,"1.5kg":1799,"3kg":2999},rating:4.9,reviews:1280},
+  {id:"p2",name:"All-Breed Adult Cat Food",desc:"Chicken & ocean fish · 32% protein · Shiny coat, healthy gut.",badge:"Best seller",badgeCls:"best",mediaCls:"rose",pouchCls:"teal",pouchCat:"Adult Cat",pouchSub:"Chicken & Fish",price:{"500g":699,"1.5kg":1599,"3kg":2699},was:{"500g":819,"1.5kg":1899,"3kg":3199},rating:4.8,reviews:864},
+  {id:"p3",name:"Puppy Starter Recipe",desc:"Small-breed puppies · Extra DHA · Grain-free formula.",badge:"New",badgeCls:"new",mediaCls:"sky",pouchCls:"navy",pouchCat:"Puppy",pouchSub:"Chicken & Rice",price:{"500g":749,"1.5kg":1699,"3kg":2799},was:{"500g":849,"1.5kg":1999,"3kg":3199},rating:4.7,reviews:312},
+  {id:"p4",name:"Indie Power Blend",desc:"Built for Indies · High energy · Turmeric & pumpkin.",badge:"Indie-first",badgeCls:"best",mediaCls:"butter",pouchCls:"brown",pouchCat:"All Indies",pouchSub:"Chicken & Turmeric",price:{"500g":629,"1.5kg":1449,"3kg":2399},was:{"500g":749,"1.5kg":1749,"3kg":2899},rating:5.0,reviews:201},
+  {id:"p5",name:"Senior Care Recipe",desc:"7+ years · Joint support · Lower calories, omega-3.",badge:"New",badgeCls:"new",mediaCls:"lilac",pouchCls:"plum",pouchCat:"Senior",pouchSub:"Fish & Pumpkin",price:{"500g":799,"1.5kg":1799,"3kg":2899},was:{"500g":899,"1.5kg":2099,"3kg":3299},rating:4.8,reviews:156},
+  {id:"p6",name:"Chicken Liver Treats",desc:"Freeze-dried single-ingredient treats for training.",badge:"Top rated",badgeCls:"best",mediaCls:"",pouchCls:"",pouchCat:"Treats",pouchSub:"Single Ingredient",price:{"100g":299,"250g":649,"500g":1099},was:{"100g":349,"250g":799,"500g":1299},rating:4.9,reviews:542}
+];
+
+/* ===== Render Products ===== */
+const grid=document.getElementById("productGrid");
+function renderProducts(){
+  grid.innerHTML=PRODUCTS.map(p=>{
+    const sizes=Object.keys(p.price);
+    const defaultSize=sizes[0];
+    return `<article class="product-card" data-id="${p.id}" data-size="${defaultSize}">
+      ${p.badge?`<span class="product-tag ${p.badgeCls}">${p.badge}</span>`:""}
+      <div class="product-media ${p.mediaCls}">
+        <div class="pouch ${p.pouchCls}">
+          <div class="brand">K9</div>
+          <div class="cat">${p.pouchCat.toUpperCase()}</div>
+          <div class="sub">${p.pouchSub}</div>
+          <div class="divider"></div>
+          <div class="ingredients">Premium · Lab-tested · Made in India</div>
+          <div class="weight">${defaultSize}</div>
+        </div>
+      </div>
+      <div class="product-body">
+        <div class="rating-row">
+          <span class="stars">${"★★★★★"}</span>
+          <span>${p.rating.toFixed(1)} · ${p.reviews.toLocaleString()} reviews</span>
+        </div>
+        <div class="meta-line">
+          <div class="product-title">${p.name}</div>
+          <div class="product-price"><span class="was">₹${p.was[defaultSize]}</span>₹${p.price[defaultSize]}</div>
+        </div>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-variants">
+          ${sizes.map((s,i)=>`<button class="variant ${i===0?"active":""}" data-size="${s}">${s}</button>`).join("")}
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-dark btn-sm add-sub" data-id="${p.id}">Subscribe −15%</button>
+          <button class="btn btn-ghost btn-sm add-once" data-id="${p.id}">Add once</button>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+  // Variant switching
+  grid.querySelectorAll(".product-card").forEach(card=>{
+    const id=card.dataset.id;
+    const p=PRODUCTS.find(x=>x.id===id);
+    card.querySelectorAll(".variant").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        card.querySelectorAll(".variant").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const s=btn.dataset.size;
+        card.dataset.size=s;
+        card.querySelector(".pouch .weight").textContent=s;
+        card.querySelector(".product-price").innerHTML=`<span class="was">₹${p.was[s]}</span>₹${p.price[s]}`;
+      });
+    });
+  });
+  grid.querySelectorAll(".add-sub").forEach(b=>b.addEventListener("click",()=>addToCart(b.dataset.id,true)));
+  grid.querySelectorAll(".add-once").forEach(b=>b.addEventListener("click",()=>addToCart(b.dataset.id,false)));
+}
+renderProducts();
+
+/* ===== Cart ===== */
+const cart=[];
+function addToCart(id,isSub){
+  const card=document.querySelector(`.product-card[data-id="${id}"]`);
+  const size=card.dataset.size;
+  const p=PRODUCTS.find(x=>x.id===id);
+  const key=id+"|"+size+"|"+(isSub?"sub":"once");
+  const existing=cart.find(c=>c.key===key);
+  if(existing){existing.qty++}
+  else{cart.push({key,id,size,isSub,qty:1,name:p.name,price:p.price[size],pouchCls:p.pouchCls||""});}
+  renderCart();
+  openCart();
+  showToast((isSub?"Subscription added":"Added to bowl")+" · "+p.name);
+}
+function removeItem(key){
+  const i=cart.findIndex(c=>c.key===key);
+  if(i>=0){cart.splice(i,1);renderCart();}
+}
+function updateQty(key,delta){
+  const it=cart.find(c=>c.key===key);
+  if(!it)return;
+  it.qty=Math.max(1,it.qty+delta);
+  renderCart();
+}
+function renderCart(){
+  const body=document.getElementById("cartBody");
+  const foot=document.getElementById("cartFoot");
+  const count=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById("cartCount").textContent=count;
+  if(!cart.length){
+    body.innerHTML=`<div class="cart-empty">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+      <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:6px">Your bowl is empty</div>
+      <p>Start with our most-loved recipe, or build a custom plan.</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:18px" onclick="closeCart();document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">Shop recipes</button>
+    </div>`;
+    foot.style.display="none";
+    return;
+  }
+  foot.style.display="block";
+  body.innerHTML=cart.map(c=>`<div class="cart-item">
+    <div class="thumb" style="background:linear-gradient(170deg,${pouchColor(c.pouchCls)});color:#fff">K9</div>
+    <div class="info">
+      <h4>${c.name}</h4>
+      <div class="variant-label">${c.size}</div>
+      ${c.isSub?'<div class="subline">Subscription · saves 15%</div>':''}
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div class="qty">
+          <button onclick="updateQty('${c.key}',-1)">−</button><span>${c.qty}</span><button onclick="updateQty('${c.key}',1)">+</button>
+        </div>
+        <button class="remove" onclick="removeItem('${c.key}')">Remove</button>
+      </div>
+    </div>
+    <div class="price">₹${Math.round(c.price*c.qty*(c.isSub?0.85:1)).toLocaleString("en-IN")}</div>
+  </div>`).join("");
+  const subtotal=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const savings=cart.reduce((s,c)=>s+(c.isSub?c.price*c.qty*0.15:0),0);
+  const ship=cart.some(c=>c.isSub)||subtotal>=899?0:79;
+  const total=subtotal-savings+ship;
+  document.getElementById("subtotal").textContent="₹"+subtotal.toLocaleString("en-IN");
+  document.getElementById("savings").textContent="−₹"+Math.round(savings).toLocaleString("en-IN");
+  document.getElementById("shipLine").textContent=ship===0?"Free":"₹"+ship;
+  document.getElementById("total").textContent="₹"+Math.round(total).toLocaleString("en-IN");
+}
+function pouchColor(cls){
+  const map={"sage":"#7B9B66 0%,#4E6B3D 100%","teal":"#2B8A8A 0%,#124B4B 100%","brown":"#8B5A36 0%,#4F2F17 100%","navy":"#2B4764 0%,#0F1F33 100%","plum":"#784267 0%,#3B1F33 100%"};
+  return map[cls]||"#EF6C47 0%,#C54A2A 100%";
+}
+renderCart();
+
+/* ===== Cart open/close ===== */
+const scrim=document.getElementById("scrim");
+const drawer=document.getElementById("cartDrawer");
+function openCart(){scrim.classList.add("open");drawer.classList.add("open");document.body.style.overflow="hidden"}
+function closeCart(){scrim.classList.remove("open");drawer.classList.remove("open");document.body.style.overflow=""}
+document.getElementById("openCart").addEventListener("click",openCart);
+document.getElementById("closeCart").addEventListener("click",closeCart);
+scrim.addEventListener("click",closeCart);
+
+/* ===== Toast ===== */
+const toast=document.getElementById("toast");
+function showToast(msg){
+  document.getElementById("toastMsg").textContent=msg;
+  toast.classList.add("show");
+  clearTimeout(window._t);
+  window._t=setTimeout(()=>toast.classList.remove("show"),2400);
+}
+
+/* ===== Quiz Modal ===== */
+const quizScrim=document.getElementById("quizScrim");
+const quizBody=document.getElementById("quizBody");
+const quizTitle=document.getElementById("quizTitle");
+const quizProgress=document.getElementById("quizProgress");
+const quizBack=document.getElementById("quizBack");
+const quizNext=document.getElementById("quizNext");
+let quizStep=0;
+const answers={};
+const QUIZ=[
+  {title:"Who's the star of the show?",prompt:"Dog or cat? We'll take it from there.",key:"species",type:"pick",options:[{v:"dog",emoji:"🐶",label:"Dog"},{v:"cat",emoji:"🐱",label:"Cat"}]},
+  {title:"How old are they?",prompt:"Life stage helps us nail protein, fat and calorie ratios.",key:"age",type:"pick",options:[{v:"puppy",emoji:"🍼",label:"Puppy / Kitten (<1 yr)"},{v:"adult",emoji:"🎯",label:"Adult (1–7 yrs)"},{v:"senior",emoji:"🧓",label:"Senior (7+ yrs)"},{v:"not-sure",emoji:"🤷",label:"Not sure"}]},
+  {title:"What's their activity level?",prompt:"Couch potato or zoomies all day? No judgment.",key:"activity",type:"pick",options:[{v:"low",emoji:"😴",label:"Chill"},{v:"med",emoji:"🚶",label:"Moderate"},{v:"high",emoji:"⚡",label:"High-energy"},{v:"athlete",emoji:"🏆",label:"Athlete"}]},
+  {title:"What should we call them?",prompt:"Last step — we'll save this for your personalised plan.",key:"name",type:"text",placeholder:"e.g. Pickle"}
+];
+function renderQuiz(){
+  const q=QUIZ[quizStep];
+  quizTitle.textContent=`Step ${quizStep+1} of ${QUIZ.length}`;
+  quizProgress.innerHTML=QUIZ.map((_,i)=>`<span class="${i<=quizStep?"done":""}"></span>`).join("");
+  if(quizStep>=QUIZ.length){
+    // Result
+    const recipe=recommendRecipe();
+    quizBody.innerHTML=`<div class="quiz-result">
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2>${answers.name||"Your pet"}'s plan is ready!</h2>
+      <p>Based on what you told us, we recommend the <strong>${recipe.name}</strong> — delivered every 4 weeks at 15% off.</p>
+      <div class="recipe-card">
+        <div class="thumb" style="background:linear-gradient(170deg,${pouchColor(recipe.pouchCls)})">K9</div>
+        <div class="info">
+          <h4>${recipe.name}</h4>
+          <p>${recipe.desc}</p>
+          <div style="margin-top:6px;font-family:var(--font-display);font-weight:700;color:var(--ink)">₹${Math.round(recipe.price["1.5kg"]*0.85)} <small style="font-weight:500;color:var(--muted)">/month (1.5kg)</small></div>
+        </div>
+      </div>
+    </div>`;
+    quizBack.textContent="← Start over";
+    quizNext.textContent="Add to bowl";
+    quizNext.onclick=()=>{addToCart(recipe.id,true);closeQuiz();};
+    return;
+  }
+  quizBack.textContent=quizStep===0?"Cancel":"← Back";
+  quizNext.textContent=quizStep===QUIZ.length-1?"See my plan ✨":"Next →";
+  quizNext.onclick=advanceQuiz;
+  const q2=QUIZ[quizStep];
+  if(q2.type==="pick"){
+    quizBody.innerHTML=`<h2>${q2.title}</h2><p>${q2.prompt}</p>
+      <div class="quiz-options">${q2.options.map(o=>`<button class="quiz-opt ${answers[q2.key]===o.v?"active":""}" data-v="${o.v}"><span class="emoji">${o.emoji}</span>${o.label}</button>`).join("")}</div>`;
+    quizBody.querySelectorAll(".quiz-opt").forEach(b=>b.addEventListener("click",()=>{
+      quizBody.querySelectorAll(".quiz-opt").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      answers[q2.key]=b.dataset.v;
+    }));
+  } else {
+    quizBody.innerHTML=`<h2>${q2.title}</h2><p>${q2.prompt}</p>
+      <input class="quiz-input" id="quizText" placeholder="${q2.placeholder||""}" value="${answers[q2.key]||""}" />`;
+    setTimeout(()=>document.getElementById("quizText").focus(),50);
+  }
+}
+function advanceQuiz(){
+  const q=QUIZ[quizStep];
+  if(q.type==="text"){
+    const v=document.getElementById("quizText").value.trim();
+    if(!v){showToast("Give them a name — we'll save it ♥");return}
+    answers[q.key]=v;
+  } else if(!answers[q.key]){showToast("Pick an option to continue");return}
+  quizStep++;
+  renderQuiz();
+}
+function recommendRecipe(){
+  if(answers.species==="cat")return PRODUCTS.find(p=>p.id==="p2");
+  if(answers.age==="puppy")return PRODUCTS.find(p=>p.id==="p3");
+  if(answers.age==="senior")return PRODUCTS.find(p=>p.id==="p5");
+  if(answers.activity==="high"||answers.activity==="athlete")return PRODUCTS.find(p=>p.id==="p4");
+  return PRODUCTS.find(p=>p.id==="p1");
+}
+function openQuiz(){
+  quizStep=0;
+  for(const k in answers)delete answers[k];
+  renderQuiz();
+  quizScrim.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeQuiz(){quizScrim.classList.remove("open");document.body.style.overflow=""}
+document.getElementById("openQuiz").addEventListener("click",openQuiz);
+document.getElementById("closeQuiz").addEventListener("click",closeQuiz);
+quizScrim.addEventListener("click",e=>{if(e.target===quizScrim)closeQuiz()});
+quizBack.addEventListener("click",()=>{
+  if(quizStep>=QUIZ.length){quizStep=0;for(const k in answers)delete answers[k];renderQuiz();return}
+  if(quizStep===0)closeQuiz();else{quizStep--;renderQuiz()}
+});
+
+/* ===== Plan buttons ===== */
+document.querySelectorAll(".plan .btn").forEach(b=>b.addEventListener("click",()=>{
+  const isStarter=b.textContent.includes("Starter");
+  addToCart(isStarter?"p1":"p4",true);
+}));
+
+/* ===== ESC to close ===== */
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){closeCart();closeQuiz();}
+});
+</script>
+</body>
+</html>
