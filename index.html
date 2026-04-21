@@ -438,31 +438,213 @@
   .quiz-result .result-emoji{font-size:4rem;margin-bottom:14px;display:block;animation:pop .5s var(--ease)}
   @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
 
+  /* ============ About section ============ */
+  .about-bg{background:var(--cream-2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:40px}
+
+  /* ============ Mobile menu (hamburger) ============ */
+  .menu-btn{display:none}
+  .burger{position:relative;width:20px;height:14px;display:inline-block}
+  .burger span{position:absolute;left:0;right:0;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .2s,top .3s var(--ease)}
+  .burger span:nth-child(1){top:0}
+  .burger span:nth-child(2){top:6px}
+  .burger span:nth-child(3){top:12px}
+  .menu-btn.open .burger span:nth-child(1){top:6px;transform:rotate(45deg)}
+  .menu-btn.open .burger span:nth-child(2){opacity:0}
+  .menu-btn.open .burger span:nth-child(3){top:6px;transform:rotate(-45deg)}
+  .mobile-menu{
+    position:fixed;top:0;right:0;width:min(340px,88%);height:100vh;
+    background:var(--cream);z-index:45;
+    transform:translateX(100%);transition:transform .45s var(--ease);
+    padding:100px 28px 40px;
+    display:flex;flex-direction:column;gap:4px;
+    box-shadow:var(--shadow-lg);
+    overflow-y:auto;
+  }
+  .mobile-menu.open{transform:translateX(0)}
+  .mobile-menu a{
+    font-family:var(--display);font-size:1.8rem;font-weight:500;
+    padding:14px 0;border-bottom:1px solid rgba(27,26,23,.08);
+    letter-spacing:-.01em;
+  }
+  .mobile-menu a:hover{color:var(--coral)}
+  .mm-actions{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+  .mm-actions .btn{justify-content:center;width:100%;padding:16px}
+  .menu-backdrop{position:fixed;inset:0;background:rgba(27,26,23,.45);z-index:44;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(2px)}
+  .menu-backdrop.open{opacity:1;pointer-events:auto}
+
   /* ============ Responsive ============ */
   @media (max-width:980px){
-    .hero-inner{grid-template-columns:1fr;gap:40px}
-    .hero-visual{height:440px}
-    .hero-badge.b1{left:0}
-    .hero-badge.b3{left:10px}
-    .bento-1{grid-column:span 12;min-height:auto}
+    .hero{padding:40px 0 70px}
+    .hero-inner{grid-template-columns:1fr;gap:36px;min-height:auto}
+    .hero-copy{order:1}
+    .hero-visual{order:2;height:auto;aspect-ratio:4/5;max-width:480px;margin:0 auto;width:100%}
+    .hero-badge.b1{left:0;top:20px;padding:12px 18px;font-size:.78rem}
+    .hero-badge.b2{right:0;bottom:60px;padding:12px 18px;font-size:.78rem}
+    .hero-badge.b3{left:10px;padding:12px 18px;font-size:.78rem}
+    .hero-scroll{display:none}
+    .hero-sub{font-size:1.05rem;margin-bottom:26px}
+    .hero h1{font-size:clamp(2.4rem,9vw,4.2rem)}
+    .hero-ratings{gap:14px}
+    .hero-ratings .sep{display:none}
+
+    .bento-1{grid-column:span 12;min-height:auto;padding:32px}
     .bento-2,.bento-3,.bento-4,.bento-5{grid-column:span 6}
-    .bento-6{grid-template-columns:1fr;padding:36px}
-    .subscribe-inner,.transform-grid,.sec-head,.testi-hero{grid-template-columns:1fr;gap:34px}
+    .bento-6{grid-template-columns:1fr;padding:36px;gap:28px}
+    .bento-6 h3{font-size:1.8rem}
+    .bento .big-num{font-size:5.5rem}
+
+    .subscribe-inner,.transform-grid,.sec-head,.testi-hero,.about-grid{grid-template-columns:1fr;gap:34px}
+    .sec-head{margin-bottom:50px}
     .sec-head p{justify-self:start}
     .ing-grid{grid-template-columns:repeat(3,1fr)}
-    .foot-grid{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:40px}
     .testi-more{grid-template-columns:1fr}
-    .transform-photos{height:420px}
-    .transform-stats{grid-template-columns:1fr 1fr}
+    .transform-photos{height:380px;max-width:500px;margin:0 auto}
+    .transform-stats{grid-template-columns:1fr 1fr;gap:22px}
+    .transform-stats .ts-num{font-size:2.6rem}
+
     .nav-links{display:none}
+    .menu-btn{display:grid}
+    .hide-mobile{display:none}
+    .nav-inner{padding:14px 0}
+    .nav.scrolled .nav-inner{padding:10px 0}
+
+    .marquee-track{font-size:1.4rem;gap:42px}
+    .marquee-track span{gap:42px}
+
+    .calc{padding:28px}
+    .freq-tabs button{padding:10px 4px;font-size:.76rem}
+    .dog-size button{padding:12px 4px;font-size:.76rem}
+    .dog-size .ds-emoji{font-size:1.3rem}
+
+    .testi-quote{font-size:1.3rem}
+    .testi-quote::before{font-size:3.5rem;margin-bottom:-14px}
+
+    .modal{padding:28px 22px;border-radius:24px}
+    .modal-close{top:14px;right:14px;width:36px;height:36px}
+    .quiz-step h3{font-size:1.5rem}
+    .quiz-opts button{padding:14px 16px;font-size:.92rem}
+
+    .foot-display{padding:50px 0 10px}
+    .foot-display .megatext{font-size:clamp(2.6rem,13vw,8rem);white-space:normal;line-height:1}
+
+    footer{padding:60px 0 26px}
+    .foot-logo{font-size:2rem}
+
+    .about-stats{gap:20px}
+    .about-stats > div > div:first-child{font-size:1.8rem !important}
+
+    .sec-pad{padding:80px 0}
   }
   @media (max-width:560px){
-    .ing-grid{grid-template-columns:repeat(2,1fr)}
+    .container{padding:0 18px}
+    .topbar{font-size:.68rem;padding:9px 14px;letter-spacing:.1em}
+    .logo{font-size:1.35rem}
+    .logo-mark{width:32px;height:32px;font-size:.78rem}
+    .icon-btn{width:38px;height:38px}
+
+    .hero{padding:24px 0 56px}
+    .hero h1{font-size:clamp(2.2rem,10vw,3.4rem);margin:16px 0 20px}
+    .hero-sub{font-size:1rem;line-height:1.55;margin-bottom:22px}
+    .hero-cta{gap:10px;margin-bottom:32px}
+    .hero-cta .btn{padding:12px 20px;font-size:.88rem;flex:1;justify-content:center;min-width:140px}
+    .hero-visual{aspect-ratio:1/1.05;max-width:100%}
+    .hero-badge{font-size:.72rem !important;padding:10px 14px !important;gap:8px}
+    .hero-badge.b1{top:14px;left:6px}
+    .hero-badge.b2{bottom:40px;right:6px}
+    .hero-badge.b3{top:auto;bottom:110px;left:6px}
+    .hero-ratings{gap:12px;font-size:.85rem;flex-direction:column;align-items:flex-start}
+
+    .eyebrow{font-size:.68rem;letter-spacing:.18em}
+
+    .marquee{padding:18px 0}
+    .marquee-track{font-size:1.1rem;gap:30px}
+    .marquee-track span{gap:30px}
+    .marquee-track .dot{width:8px;height:8px}
+
+    .sec-pad{padding:64px 0}
+    .sec-head{margin-bottom:36px;gap:16px}
+    h2{font-size:clamp(1.9rem,8vw,2.8rem)}
+    h3{font-size:1.3rem}
+    .sec-head p{font-size:1rem}
+
+    .bento{gap:12px}
+    .bento-cell{padding:28px 24px;border-radius:22px}
+    .bento-1{padding:30px;min-height:340px}
+    .bento .big-num{font-size:4.6rem;margin-bottom:14px}
     .bento-2,.bento-3,.bento-4,.bento-5{grid-column:span 12}
-    .p-card{flex:0 0 85%}
-    .sec-pad{padding:80px 0}
-    .dog-size{grid-template-columns:repeat(2,1fr)}
+    .bento-icon{width:48px;height:48px;font-size:1.35rem;margin-bottom:16px;border-radius:14px}
+    .bento-6{padding:30px 24px}
+    .bento-6 h3{font-size:1.55rem}
+    .bento-6 .stat-row{grid-template-columns:1fr 1fr;gap:18px}
+    .bento-6 .stat-row .stat:last-child{grid-column:1 / -1}
+    .stat-row .num{font-size:2.2rem}
+
+    .scroller-nav{display:none}
+    .scroller{gap:16px;padding:6px 18px 30px;margin:0 -18px;scroll-padding-left:18px}
+    .p-card{flex:0 0 80%;border-radius:22px}
+    .p-body{padding:20px}
+    .p-card h4{font-size:1.25rem}
+
+    .transform-grid{gap:26px}
+    .transform-photos{height:320px}
+    .transform-photo.before{border-width:5px}
+    .transform-photo.after{border-width:5px}
+    .transform-stats{grid-template-columns:1fr 1fr;gap:16px}
+    .transform-stats .ts-num{font-size:2.1rem}
+    .transform-stats .ts-lbl{font-size:.72rem}
+
+    .ing-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .ing-card{padding:18px 10px;border-radius:18px;gap:6px}
+    .ing-emoji{font-size:2rem}
+    .ing-name{font-size:.92rem}
+    .ing-note{font-size:.66rem}
+
+    .subscribe{padding:70px 0}
+    .subscribe-inner{gap:28px}
+    .subscribe-list li{font-size:.95rem;gap:10px}
+    .subscribe-list .check{width:26px;height:26px;font-size:.8rem}
+    .calc{padding:24px 20px;border-radius:24px}
+    .calc-total{padding:18px;flex-wrap:wrap;gap:8px}
+    .calc-total .big{font-size:2rem}
+    .dog-size{grid-template-columns:repeat(2,1fr);gap:8px}
+    .dog-size button{padding:14px 6px}
+
+    .quiz{padding:80px 0}
+    .paw-float{font-size:2rem;opacity:.7}
+    .quiz-cta .btn{flex:1;justify-content:center;min-width:0}
+
+    .testi-photo{aspect-ratio:3/4}
+    .testi-quote{font-size:1.2rem;line-height:1.3}
+    .testi-quote::before{font-size:3rem}
+    .tm-card{padding:24px}
+
+    .faq-wrap .faq-q{font-size:1.1rem;gap:14px}
+    .faq-wrap .faq-a{font-size:.94rem}
+
+    .about-stats{grid-template-columns:repeat(3,1fr);gap:14px}
+    .about-stats > div > div:first-child{font-size:1.6rem !important}
+    .about-stats > div > div:last-child{font-size:.75rem !important}
+    #about .container > div:last-child{max-width:300px !important}
+
+    .foot-display .megatext{font-size:clamp(2rem,12vw,5rem)}
+    .foot-grid{grid-template-columns:1fr;gap:34px}
+    .foot-bottom{font-size:.76rem;justify-content:center;text-align:center}
+    .newsletter{flex-direction:column;gap:8px}
+    .newsletter input,.newsletter button{width:100%;padding:14px 16px}
+
+    .drawer{width:100%}
+    .drawer-head,.drawer-body,.drawer-foot{padding-left:20px;padding-right:20px}
+
+    .modal{padding:24px 18px;max-height:92vh}
+    .quiz-step h3{font-size:1.3rem;margin-bottom:18px}
+    .quiz-opts button{padding:12px 14px;font-size:.88rem;gap:10px}
+    .quiz-opts button .qe{font-size:1.3rem}
+    .quiz-nav .btn{padding:12px 18px;font-size:.85rem}
   }
+
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.01ms !important;transition-duration:.01ms !important}
   }
@@ -489,19 +671,34 @@
       <a href="#testimonials">Reviews</a>
     </div>
     <div class="nav-cta">
-      <button class="icon-btn" aria-label="Search">
+      <button class="icon-btn hide-mobile" aria-label="Search">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </button>
-      <button class="icon-btn" aria-label="Account">
+      <button class="icon-btn hide-mobile" aria-label="Account">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
       </button>
       <button class="icon-btn" id="cartOpen" aria-label="Cart">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6h15l-1.5 9H7.5z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 4 2H2"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <span class="burger"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- =================== MOBILE MENU =================== -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#products">Shop</a>
+  <a href="#subscribe">Subscribe</a>
+  <a href="#about">Our Story</a>
+  <a href="#ingredients">Ingredients</a>
+  <a href="#testimonials">Reviews</a>
+  <div class="mm-actions">
+    <button class="btn btn-primary" id="mmQuiz">Take the pet quiz</button>
+  </div>
+</div>
 
 <!-- =================== HERO =================== -->
 <section class="hero">
@@ -958,14 +1155,14 @@
 </section>
 
 <!-- =================== ABOUT =================== -->
-<section class="sec-pad" id="about" style="background:var(--cream-2)">
-  <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center">
+<section class="sec-pad about-bg" id="about">
+  <div class="container about-grid">
     <div data-reveal="left">
       <span class="eyebrow">Our story</span>
       <h2 style="margin-top:16px">It started with a <em class="italic">wag</em> and a wish.</h2>
       <p style="color:var(--ink-2);font-size:1.08rem;margin-top:22px">K9 Foods began at a kitchen table. A rescue beagle. A simple question — <em>why is everything on the shelf so full of fillers?</em></p>
       <p style="color:var(--ink-2);font-size:1.08rem">So we built what we couldn't find. Real ingredients, balanced nutrition, crafted <em class="italic">dil se</em> — from one pet parent to another.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;margin-top:40px">
+      <div class="about-stats">
         <div>
           <div style="font-family:var(--display);font-size:2.4rem;font-weight:400">2021</div>
           <div style="font-size:.86rem;color:var(--ink-3)">Founded</div>
@@ -1066,6 +1263,9 @@
   </div>
 </footer>
 
+<!-- =================== MOBILE MENU BACKDROP =================== -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
 <!-- =================== CART DRAWER =================== -->
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
 <aside class="drawer" id="drawer">
@@ -1154,6 +1354,33 @@
   // ============ Nav scroll ============
   const nav=document.getElementById('nav');
   addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)});
+
+  // ============ Mobile menu ============
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const menuBackdrop=document.getElementById('menuBackdrop');
+  const closeMenu=()=>{
+    menuBtn.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    menuBackdrop.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  };
+  const openMenu=()=>{
+    menuBtn.classList.add('open');
+    mobileMenu.classList.add('open');
+    menuBackdrop.classList.add('open');
+    menuBtn.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  };
+  menuBtn.addEventListener('click',()=>menuBtn.classList.contains('open')?closeMenu():openMenu());
+  menuBackdrop.addEventListener('click',closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+  document.getElementById('mmQuiz').addEventListener('click',()=>{
+    closeMenu();
+    document.getElementById('quizModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  });
 
   // ============ Parallax ============
   const heroPhoto=document.getElementById('heroPhoto');
